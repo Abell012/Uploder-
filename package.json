@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/upload.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/cleanup.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "pages/index.js",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/pages/index.js"
+    },
+    {
+      "src": "/api/upload",
+      "dest": "/api/upload.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/cleanup",
+      "dest": "/api/cleanup.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/public/uploads/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/pages/index.js"
+    }
+  ]
+}
