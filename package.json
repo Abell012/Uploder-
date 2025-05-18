@@ -1,41 +1,18 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/upload.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/cleanup.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "pages/index.js",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/pages/index.js"
-    },
-    {
-      "src": "/api/upload",
-      "dest": "/api/upload.js",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/api/cleanup",
-      "dest": "/api/cleanup.js",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "/public/uploads/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/pages/index.js"
-    }
-  ]
+  "name": "image-uploader",
+  "version": "1.0.0",
+  "description": "Temporary image uploader with 30-minute expiration",
+  "scripts": {
+    "cleanup": "node api/cleanup.js"
+  },
+  "dependencies": {
+    "@vercel/node": "^2.8.5",
+    "fs-extra": "^11.1.1",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.32.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@vercel/static": "^1.0.5"
+  }
 }
